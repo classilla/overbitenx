@@ -1,6 +1,6 @@
 # OverbiteNX
 
-OverbiteNX is a Gopher client add-on for Firefox that allows Firefox to access sites over the historical Gopher protocol. It is the successor to OverbiteFF, which no longer functions under WebExtensions.
+OverbiteNX is a Gopher client add-on for Firefox that allows Firefox to access sites over [the historical Gopher protocol](https://en.wikipedia.org/wiki/Gopher_(protocol)). It is the successor to OverbiteFF, which no longer functions under WebExtensions.
 
 OverbiteNX comes in two pieces: OverbiteNX itself, which is a standard WebExtensions-compatible Firefox addon; and Onyx, a native component that OverbiteNX drives through Firefox to perform network access. Onyx is supported on macOS (10.12+ and probably earlier versions), Windows (7 and up, 32- or 64-bit) and Linux, and may work on other tier-3 platforms that can run Firefox. OverbiteNX is supported on Firefox 60 and up on the same platforms. Both OverbiteNX and Onyx must be installed for proper functionality.
 
@@ -17,7 +17,7 @@ Once alpha testing is complete, the addon will be uploaded to AMO and signed, wh
 
 ## How to install the alpha test
 
-1. Clone this repo and put it somewhere convenient.
+1. Clone or download this repo and put it somewhere convenient. If you don't have `git` on your computer, just use the green button above to download a .zip file and unpack that.
 
 2. Install Onyx. You can get a pre-built binary from the [releases tab](/classilla/overbitenx/releases) for Windows 7+ or macOS 10.12+, or see below on how to build from source (required for Linux/*BSD/etc.). The Windows version is distributed as an installer which can be run directly, and it can be uninstalled from the regular Add/Remove Programs control panel. The macOS version is distributed as a DMG; read the instructions inside the disk image for how to install and uninstall.
 

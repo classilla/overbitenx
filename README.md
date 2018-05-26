@@ -17,9 +17,9 @@ Once alpha testing is complete, the addon will be uploaded to AMO and signed, wh
 
 ## How to install the alpha test
 
-1. Clone or download this repo and put it somewhere convenient. If you don't have `git` on your computer, just use the green button above to download a .zip file and unpack that.
+1. Clone or download this repo and put it somewhere convenient. If you don't have `git` on your computer, just [download this repo as a .zip file](https://github.com/classilla/overbitenx/archive/master.zip).
 
-2. Install Onyx. You can get a pre-built binary from the [releases tab](/classilla/overbitenx/releases) for Windows 7+ or macOS 10.12+, or see below on how to build from source (required for Linux/*BSD/etc.). The Windows version is distributed as an installer which can be run directly, and it can be uninstalled from the regular Add/Remove Programs control panel. The macOS version is distributed as a DMG; read the instructions inside the disk image for how to install and uninstall.
+2. Install Onyx. You can get a pre-built binary from the [releases tab](https://github.com/classilla/overbitenx/releases) for Windows 7+ or macOS 10.12+, or see below on how to build from source (required for Linux/*BSD/etc.). The Windows version is distributed as an installer which can be run directly, and it can be uninstalled from the regular Add/Remove Programs control panel. The macOS version is distributed as a DMG; read the instructions inside the disk image for how to install and uninstall.
 
 3. In Firefox, go to `about:debugging` and add a "Temporary Add-on." Browse to where you put the repo, enter the `ext` directory, and select `manifest.json`. You will need to repeat this step every time Firefox starts up.
 

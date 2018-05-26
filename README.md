@@ -25,6 +25,8 @@ Once alpha testing is complete, the addon will be uploaded to AMO and signed, wh
 
 4. Type or navigate to any URL starting with `gopher://`. Firefox will ask if you want to use OverbiteNX; you do (check the box if you want to remember that choice, which is strongly advised or you will see that requester box a lot). Assuming everything is correctly installed, the browser will download and display the requested resource.
 
+If you notice any untoward behaviour, the current alpha test generates copious debugging output to the Browser Console. Please include a transcript of this output in any issue you file.
+
 ## How to build from source
 
 1. Onyx is written in portable C that should compile on nearly any POSIX-compliant system. There are some Win32-specific sections due to irregularities with Winsock. `gcc` and `clang` are both supported compilers.

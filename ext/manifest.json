@@ -1,0 +1,42 @@
+{
+
+  "manifest_version": 2,
+  "name": "OverbiteNX",
+  "version": "0.1",
+  "description": "Enables the Gopher protocol in Firefox.",
+  "author": "The Overbite Project",
+  "homepage_url" : "https://gopher.floodgap.com/overbite/",
+
+  "applications": {
+      "gecko": {
+          "id": "overbitenx@floodgap.com",
+          "strict_min_version": "59.0"
+      }
+  },
+  "permissions": [
+      "bookmarks",
+      "downloads",
+      "history",
+      "nativeMessaging",
+      "tabs"
+  ],
+  "background": {
+      "scripts": [
+           "topaz.js",
+           "agate.js"
+      ]
+  },
+  "page_action": {
+      "browser_style" : true,
+      "default_icon"  : "r/stop.svg",
+      "default_title" : "Stop Gopher transfer"
+  },
+  "protocol_handlers": [
+    {
+      "name"        : "OverbiteNX",
+      "protocol"    : "gopher",
+      "uriTemplate" : "d?%s"
+    }
+  ]
+
+}

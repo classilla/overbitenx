@@ -1,0 +1,10 @@
+onyx
+*.exe
+*.xpi
+*.dmg
+mac
+mac/*
+*.dSYM
+*.dSYM/*
+.DS_Store
+

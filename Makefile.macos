@@ -1,0 +1,31 @@
+CP=/bin/cp
+RM=/bin/rm
+MKDIR=/bin/mkdir
+DITTO=/usr/bin/ditto
+HDIUTIL=/usr/bin/hdiutil
+WHEREDIR=mac
+WHERE=$(WHEREDIR)/Onyx.app/Contents
+
+.PHONY: default clean
+
+# This Makefile requires Makefile.generic to have already run, since it
+# just packages that binary.
+
+Onyx.dmg: onyx
+	$(MKDIR) -p $(WHERE)/MacOS
+	$(CP) Info.plist $(WHERE)
+	$(CP) mac-onyx-inst $(WHERE)/MacOS/onyx-inst
+	$(CP) onyx $(WHERE)/MacOS
+	$(DITTO) "Mac Read Me.rtf" $(WHEREDIR)
+	$(HDIUTIL) create -sectors 6000 \
+		-fs HFS+ -fsargs "-c c=64,a=16,e=16" \
+		-volname "Overbite Onyx for macOS" \
+		-srcfolder $(WHEREDIR) \
+		-format UDBZ \
+		Onyx.dmg
+
+onyx:
+	$(MAKE) -f Makefile.generic
+
+clean:
+	$(RM) -rf mac Onyx.dmg

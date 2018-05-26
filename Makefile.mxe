@@ -1,0 +1,18 @@
+MXE_ROOT=$(HOME)/mxe
+CC=$(MXE_ROOT)/usr/bin/i686-w64-mingw32.static-gcc
+MAKENSIS=$(MXE_ROOT)/usr/i686-w64-mingw32.static/bin/makensis
+RM=/bin/rm
+
+onyxinst.exe: onyx.exe onyx.nsi wintest.exe
+	$(MAKENSIS) onyx.nsi
+
+onyx.exe: onyx.c
+	$(CC) -DDEBUG -g -o onyx.exe onyx.c -lws2_32
+
+wintest.exe: wintest.c
+	$(CC) -g -o wintest.exe wintest.c -lws2_32
+	
+clean:
+	$(RM) -f onyx.exe onyxinst.exe wintest.exe
+
+.PHONY: clean

@@ -1,0 +1,4 @@
+ln -s /Users/spectre/src/nxo/onyx /Applications/onyx
+mkdir -p ~/Library/Application\ Support/Mozilla/NativeMessagingHosts
+ln -s /Users/spectre/src/nxo/onyx.json ~/Library/Application\ Support/Mozilla/NativeMessagingHosts/onyx.json
+

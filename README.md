@@ -93,4 +93,6 @@ Related to this phenomenon is that both the OverbiteNX `moz-extension://` URL an
 
 The inline view feature of OverbiteFF is not yet implemented in OverbiteNX.
 
+CAPS support (for features such as path breadcrumbs, etc.) is not yet implemented in OverbiteNX.
+
 If you have an idea how to fix or improve these issues, please file a pull request or issue.

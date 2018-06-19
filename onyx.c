@@ -245,6 +245,7 @@ int main(int argc, char **argv) {
 		host[hlength] = '\0';
 		if (val >= (in+plength)) {
 			json_error("syntax_error");
+			free(host);
 			free(in);
 			continue;
 		}
@@ -260,6 +261,8 @@ int main(int argc, char **argv) {
 		}
 		if (val == (in + plength)) {
 			json_error("syntax_error");
+			free(sel);
+			free(host);
 			free(in);
 			continue;
 		}

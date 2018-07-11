@@ -9,23 +9,21 @@ OverbiteNX and Onyx are provided to you under the [Floodgap Free Software Licens
 OverbiteNX and Onyx are copyright (C) 2017-8 Cameron Kaiser.
 All rights reserved.
 
-## OverbiteNX is currently in alpha testing
+## OverbiteNX is currently in beta testing
 
-OverbiteNX currently functions and runs, but is not officially packaged for release, and has known bugs. If you want to help test or develop it, you will need to get your hands a little dirty.
+OverbiteNX currently functions and runs, but has known bugs. If you want to help test or develop it, you will need to get your hands a little dirty.
 
-Once alpha testing is complete, the addon will be uploaded to AMO and signed, while Onyx binaries (and the Onyx source code for tier-3 Firefox ports without binaries) will still be available from here.
+## How to install the beta test
 
-## How to install the alpha test
-
-1. Clone or download this repo and put it somewhere convenient. If you don't have `git` on your computer, just [download this repo as a .zip file](https://github.com/classilla/overbitenx/archive/master.zip).
+1. If you wish to have the source code for reference, clone or download this repo and put it somewhere convenient. If you don't have `git` on your computer, just [download this repo as a .zip file](https://github.com/classilla/overbitenx/archive/master.zip). However, as of the beta this is no longer required.
 
 2. Install Onyx. You can get a pre-built binary from the [releases tab](https://github.com/classilla/overbitenx/releases) for Windows 7+ or macOS 10.12+, or see below on how to build from source (required for Linux/*BSD/etc.). The Windows version is distributed as an installer which can be run directly, and it can be uninstalled from the regular Add/Remove Programs control panel. The macOS version is distributed as a DMG; read the instructions inside the disk image for how to install and uninstall.
 
-3. In Firefox, go to `about:debugging` and add a "Temporary Add-on." Browse to where you put the repo, enter the `ext` directory, and select `manifest.json`. You will need to repeat this step every time Firefox starts up.
+3. *You have a choice:* if you would like to use an officially signed extension, you can [download it from AMO](https://addons.mozilla.org/en-US/firefox/addon/overbitenx/). As the extension is updated, it will be automatically pushed to you. Alternatively, you can load the extension directly from the source code. In Firefox, go to `about:debugging` and add a "Temporary Add-on." Browse to where you put the repo, enter the `ext` directory, and select `manifest.json`. The disadvantage of loading it directly, however, is that you will need to repeat this step every time Firefox starts up.
 
 4. Type or navigate to any URL starting with `gopher://`. Firefox will ask if you want to use OverbiteNX; you do (check the box if you want to remember that choice, which is strongly advised or you will see that requester box a lot). Assuming everything is correctly installed, the browser will download and display the requested resource.
 
-If you notice any untoward behaviour, the current alpha test generates copious debugging output to the Browser Console. Please include a transcript of this output in any issue you file.
+If you notice any untoward behaviour, the current beta test generates copious debugging output to the Browser Console. Please include a transcript of this output in any issue you file.
 
 ## How to build from source
 
@@ -37,7 +35,7 @@ If you notice any untoward behaviour, the current alpha test generates copious d
 
 4. Building on Windows itself is not yet supported, but should work with [MinGW](http://www.mingw.org/). If you devise a working `Makefile` for this environment, please file a pull request.
 
-5. To build the .xpi for Firefox, enter the `ext` directory and type `make`. The .xpi thus generated is unsigned. However, making and installing the .xpi is not necessary to test OverbiteNX (see step 3 above).
+5. To build the `.xpi` for Firefox, enter the `ext` directory and type `make`. The `.xpi` thus generated is unsigned. However, making and installing the `.xpi` is not necessary to test OverbiteNX (see step 3 above).
 
 ## Theory of operation
 
@@ -92,6 +90,8 @@ HTML and XML files are currently displayed as plain text. Because Jasper looks l
 The address bar shows the address of the scaffold page within OverbiteNX, not the actual canonical URL. There appears to be no way to change this from the add-on itself. As a result, when you bookmark a Gopher URL, the star doesn't actually show up in the address bar (even though the Gopher URL is truly bookmarked) because Agate immediately rewrites it and thus it no longer matches the current address.
 
 Related to this phenomenon is that both the OverbiteNX `moz-extension://` URL and the canonical `gopher://` URL appear in your history for any given Gopher site. Transparently deleting the `moz-extension://` URL wrecks the history of the current tab and there is no provision in WebExtensions for rewriting individual history entries, so Agate simply adds an entry instead.
+
+Proxies are not yet supported by Onyx.
 
 The inline view feature of OverbiteFF is not yet implemented in OverbiteNX.
 

@@ -1,14 +1,16 @@
 CC	= /usr/bin/gcc
+CFLAGS	?= -O2
+#CFLAGS	?= -DDEBUG
 RM	= /bin/rm
 default: onyx
 .PHONY: default clean
 
 onyx: onyx.c
-	$(CC) -DDEBUG -g -o onyx onyx.c
+	$(CC) $(CFLAGS) -g -o onyx onyx.c
 
 # Optional. client.pl is preferred for testing.
 client: client.c
-	$(CC) -DDEBUG -g -o client client.c
+	$(CC) $(CFLAGS) -g -o client client.c
 
 clean:
 	$(RM) -rf onyx client onyx.dSYM client.dSYM

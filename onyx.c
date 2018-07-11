@@ -28,6 +28,7 @@
 #include <netdb.h>
 #endif
 
+/* Protocol version, not file version. */
 #define VERSION "1"
 
 // Size per network read (max). This seems pretty good.

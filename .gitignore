@@ -2,8 +2,7 @@ onyx
 *.exe
 *.xpi
 *.dmg
-mac/Onyx.app
-mac/Onyx.app/*
+mac/*
 *.dSYM
 *.dSYM/*
 .DS_Store

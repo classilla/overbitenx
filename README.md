@@ -1,6 +1,6 @@
 # OverbiteNX
 
-OverbiteNX is a Gopher client add-on for Firefox that allows Firefox to access sites over [the historical Gopher protocol](https://en.wikipedia.org/wiki/Gopher_(protocol)). It is the successor to OverbiteFF, which no longer functions under WebExtensions.
+OverbiteNX is a Gopher client add-on for Firefox that allows Firefox to access sites over [the historical Gopher protocol](https://en.wikipedia.org/wiki/Gopher_(protocol)). It is a successor to OverbiteFF, which no longer functions under WebExtensions, intended to bridge users requiring direct connection to Gopher sites until WebExtensions implements more comprehensive network functionality.
 
 OverbiteNX comes in two pieces: OverbiteNX itself, which is a standard WebExtensions-compatible Firefox addon; and Onyx, a native component that OverbiteNX drives through Firefox to perform network access. Onyx is supported on macOS (10.12+ and probably earlier versions), Windows (7 and up, 32- or 64-bit) and Linux, and may work on other tier-3 platforms that can run Firefox. OverbiteNX is supported on Firefox 60 and up on the same platforms. Both OverbiteNX and Onyx must be installed for proper functionality.
 

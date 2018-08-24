@@ -22,6 +22,7 @@
 #ifdef _WIN32
 #include "winsock2.h"
 #define SHUT_WR SD_SEND
+#define SHUT_RD SD_RECEIVE
 #else
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -85,7 +86,8 @@ int main(int argc, char **argv) {
 	char buf[BUFFER_SIZE];
 	char ebuf[BUFFER_SIZE + BUFFER_SIZE + 1];
 	char *in, *val, *host, *sel;
-	uint32_t plength, bread, port, seq, itype, hlength, i, j, k, ln, hn;
+	uint32_t plength, bread, port, seq, itype, hlength, i, j, ln, hn;
+	int32_t k;
 	int sockfd, sent, sent_b;
 	struct sockaddr_in addr;
 	struct hostent *server;
@@ -428,7 +430,6 @@ int main(int argc, char **argv) {
 		// Receive data until the socket closes or times out.
 		// Any activity on stdin cancels the transmission.
 		// We can free everything now, we don't need it anymore.
-		shutdown(sockfd, SHUT_WR);
 		free(sel);
 
 		for(;;) {

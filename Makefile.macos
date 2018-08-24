@@ -11,7 +11,7 @@ WHERE=$(WHEREDIR)/Onyx.app/Contents
 # This Makefile requires Makefile.generic to have already run, since it
 # just packages that binary.
 
-Onyx.dmg: onyx
+Onyx.dmg: onyx clean
 	$(MKDIR) -p $(WHERE)/MacOS
 	$(CP) Info.plist $(WHERE)
 	$(CP) mac-onyx-inst $(WHERE)/MacOS/onyx-inst

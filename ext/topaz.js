@@ -173,7 +173,8 @@ browser.runtime.onMessage.addListener((request, sender, sendResponse) => {
 		port.onMessage.addListener((response) => {
 			// The init message is handled here.
 			if (response.i) {
-				console.log("Onyx init: "+response.i);
+				console.log(browser.runtime.getManifest().version
+					+ " Onyx init: "+response.i);
 				backendIdle = true;
 				nextInOnyxQueue();
 				return;

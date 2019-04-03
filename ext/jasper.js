@@ -682,13 +682,14 @@ if (typeof browser !== "undefined") {
 		// If pathname is '' or '/' then itype == 1.
 		// Otherwise, pathname must be at least two characters,
 		// and itype is its second character.
+		let pathn = decodeURIComponent(url.pathname);
 
-		if (url.pathname == "" || url.pathname == "/") {
+		if (pathn == "" || pathn == "/") {
 			itype = "1";
-			sel = url.pathname;
-		} else if (url.pathname.length > 1) {
-			itype = url.pathname.substr(1, 1);
-			sel = url.pathname.substr(2);
+			sel = pathn;
+		} else if (pathn.length > 1) {
+			itype = pathn.substr(1, 1);
+			sel = pathn.substr(2);
 		} else {
 			throw {
 				w : "Couldn't understand URL", x :

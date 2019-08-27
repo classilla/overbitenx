@@ -1,20 +1,36 @@
-#!/usr/bin/perl
+#!/bin/sh
 
-# Copyright 2018 Cameron Kaiser.
+# Copyright 2019 Cameron Kaiser.
 # All rights reserved.
+#
+# This script was originally written in Perl, but now is written in sh to 
+# prepare for the new sucky world of Catalina where scripting languages
+# are deprecated and Tim Cook smiles his mysterious venomous smile. In
+# particular, prepare for zsh instead of bash actually being /bin/sh.
+if [ -n "$ZSH_VERSION" ]; then emulate -L ksh; fi
 
-$JSON_DIR = "$ENV{'HOME'}/Library/Application Support/Mozilla/NativeMessagingHosts";
+JSON_DIR="$HOME/Library/Application Support/Mozilla/NativeMessagingHosts"
+echo "Onyx Installer Tool (C)2019 Cameron Kaiser"
+echo "Installing to: $JSON_DIR"
+echo " "
 
-if (! -x "/Applications/Onyx.app/Contents/MacOS/onyx") {
-	&dialog("Onyx.app must be in /Applications.");
-}
-if (-e "${JSON_DIR}/onyx.json") {
-	&dialog("Onyx appears to be already installed for this user.");
-}
+if [ ! -x "/Applications/Onyx.app/Contents/MacOS/onyx" ]; then
+	echo "Onyx.app must be in /Applications."
+	exit 255
+fi
+if [ -e "$JSON_DIR/onyx.json" ]; then
+	echo "Onyx appears to be already installed for this user."
+	exit 254
+fi
 
-system("/bin/mkdir", "-p", $JSON_DIR);
-if (open(K, ">", "${JSON_DIR}/onyx.json")) {
-	print K <<'EOF';
+echo "Creating destination directory."
+/bin/mkdir -p "$JSON_DIR"
+if [ ! -d "$JSON_DIR" ]; then
+	echo "Unable to create Onyx connection file."
+	exit 253
+fi
+echo "Creating connector file."
+cat <<EOF >"$JSON_DIR/onyx.json"
 {
   "name": "onyx",
   "description": "OverbiteNX Gopher system component",
@@ -23,19 +39,11 @@ if (open(K, ">", "${JSON_DIR}/onyx.json")) {
   "allowed_extensions": [ "overbitenx@floodgap.com" ]
 }
 EOF
-	close(K);
-	&dialog("Onyx was successfully installed for this user.");
-} else {
-	&dialog("Onyx was unable to install: $!\n");
-}
 
-sub dialog {
-	exec("/usr/bin/osascript", "-e", <<"EOF");
+if [ -e "$JSON_DIR/onyx.json" ]; then
+	echo "Onyx was successfully installed for this user."
+	exit 0
+fi
 
-tell application "SystemUIServer"
-activate
-display dialog "@_" buttons ("OK") default button "OK"
-end tell
-EOF
-
-}
+echo "Onyx was unable to install its connector to Firefox."
+exit 128

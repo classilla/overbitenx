@@ -6,7 +6,7 @@ OverbiteNX comes in two pieces: OverbiteNX itself, which is a standard WebExtens
 
 OverbiteNX and Onyx are provided to you under the [Floodgap Free Software License](https://www.floodgap.com/software/ffsl/). You use this software package at your own risk. It is otherwise unsupported, and no warranty is expressed or implied regarding merchantability or fitness for a particular purpose.
 
-OverbiteNX and Onyx are copyright (C) 2017-8 Cameron Kaiser.
+OverbiteNX and Onyx are copyright (C) 2017-2019 Cameron Kaiser.
 All rights reserved.
 
 ## OverbiteNX is currently in beta testing
@@ -29,7 +29,7 @@ If you notice any untoward behaviour, the current beta test generates copious de
 
 1. Onyx is written in portable C that should compile on nearly any POSIX-compliant system. There are some Win32-specific sections due to irregularities with Winsock. `gcc` and `clang` are both supported compilers.
 
-2. If you have a Mac, and both Xcode and [MXE with NSIS](http://mxe.cc/) are installed, then you can just type `make` and the macOS DMG and Windows installer (and .xpi for Firefox, eventually) will be automatically built. If the Windows build blows up, make sure the path in `Makefile.mxe` is correctly pointing to your MXE binaries, and that you installed NSIS (which includes `makensis`). Note that the Mac application is unsigned. If you just want to build the Mac version by itself, do `make -f Makefile.macos` instead.
+2. If you have a Mac, and both Xcode and [MXE with NSIS](http://mxe.cc/) are installed, then you can just type `make` and the macOS DMG and Windows installer (and .xpi for Firefox, eventually) will be automatically built. If the Windows build blows up, make sure the path in `Makefile.mxe` is correctly pointing to your MXE binaries, and that you installed NSIS (which includes `makensis`). Note that the Mac application is unsigned. If you just want to build the Mac version by itself, do `make -f Makefile.macos` instead. The Mac version requires both a recent version of Xcode and [Platypus](https://sveinbjorn.org/platypus) to build.
 
 3. If you are building on Linux/*BSD/etc. or a Mozilla tier-3 system, make sure you have both `make` and a C compiler installed (either `gcc` or `clang` is acceptable, though you may need to symlink your `clang` to `gcc` depending on your system's configuration), and build Onyx with `make -f Makefile.generic`. Once this is done, copy the resulting `onyx` binary to your desired location. Copy `EXAMPLE_onyx.json` to `onyx.json` and change the path in that file to the location of your new `onyx` binary, then copy `onyx.json` to [where the native manifest should be on your system](https://developer.mozilla.org/en-US/Add-ons/WebExtensions/Native_manifests#Manifest_location). If you have MXE installed, you should also be able to build the Windows version (again, verify the path to your MXE binaries is correct) with `make -f Makefile.mxe`.
 

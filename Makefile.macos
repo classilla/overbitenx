@@ -1,10 +1,15 @@
-CP=/bin/cp
+MV=/bin/mv
 RM=/bin/rm
 MKDIR=/bin/mkdir
 DITTO=/usr/bin/ditto
+PLUTIL=/usr/bin/plutil
 HDIUTIL=/usr/bin/hdiutil
-WHEREDIR=mac
-WHERE=$(WHEREDIR)/Onyx.app/Contents
+PLATYPUS=/usr/local/bin/platypus
+
+WHERE=mac
+APP=$(WHERE)/Onyx.app
+APPCON=$(APP)/Contents
+APPOBJ=$(APPCON)/MacOS
 
 .PHONY: default clean
 
@@ -12,15 +17,33 @@ WHERE=$(WHEREDIR)/Onyx.app/Contents
 # just packages that binary.
 
 Onyx.dmg: onyx clean
-	$(MKDIR) -p $(WHERE)/MacOS
-	$(CP) Info.plist $(WHERE)
-	$(CP) mac-onyx-inst $(WHERE)/MacOS/onyx-inst
-	$(CP) onyx $(WHERE)/MacOS
-	$(DITTO) "Mac Read Me.rtf" $(WHEREDIR)
+	$(MKDIR) -p $(WHERE)
+	$(PLATYPUS) -a Onyx \
+		-I com.floodgap.onyx \
+		-i '' \
+		-c mac-onyx-inst \
+		-o "Progress Bar" \
+		-p /bin/sh \
+		-V 0.9.2.1 \
+		-u "Cameron Kaiser" \
+			-y $(APP)
+	#
+	# Manually fix the bundle so that everything is in the same
+	# places as prior versions for backwards compatibility. This means
+	# using a custom Info.plist and moving a few things around.
+	#
+	$(MV) $(APPOBJ)/Onyx $(APPOBJ)/onyx-inst
+	$(DITTO) Info.plist $(APPCON)
+	$(PLUTIL) -convert binary1 $(APPCON)/Info.plist
+	$(DITTO) onyx $(APP)/Contents/MacOS
+	#
+	# Build disk image.
+	#
+	$(DITTO) "Mac Read Me.rtf" $(WHERE)
 	$(HDIUTIL) create -sectors 6000 \
 		-fs HFS+ -fsargs "-c c=64,a=16,e=16" \
 		-volname "Overbite Onyx for macOS" \
-		-srcfolder $(WHEREDIR) \
+		-srcfolder $(WHERE) \
 		-format UDBZ \
 		Onyx.dmg
 
@@ -28,4 +51,4 @@ onyx:
 	$(MAKE) -f Makefile.generic
 
 clean:
-	$(RM) -rf mac Onyx.dmg
+	$(RM) -rf $(WHERE) Onyx.dmg

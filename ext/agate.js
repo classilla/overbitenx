@@ -1,13 +1,13 @@
 /*
  * Agate module: URL rewrite support (background)
  *
- * Copyright 2018 Cameron Kaiser.
+ * Copyright 2018, 2022 Cameron Kaiser.
  * All rights reserved.
  */
 
 
 // If we change the URL for the browser scaffold, it needs to change here too.
-var me = browser.extension.getURL("d");
+var me = browser.runtime.getURL("d");
 
 function munge(url) {
 	if (url.indexOf(me) != 0) return null;

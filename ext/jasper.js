@@ -1,7 +1,7 @@
 /*
  * Jasper module: front end
  *
- * Copyright 2017-8 Cameron Kaiser.
+ * Copyright 2017-2022 Cameron Kaiser.
  * All rights reserved.
  */
 
@@ -26,17 +26,19 @@ var hopo_s = "";
 
 function hex2a(hexx) {
 	// Hex to string, including any necessary UTF-8 conversion.
+	let ta = hex2ta(hexx);
 
-	let hex = hexx.toString();
-	if ((hex.length & 0x01)) {
-		throw "illegal hex length "+hex.length+" received from onyx";
-		return null;
-	}
+	// Do this in pieces to avoid overflowing Function.prototype.apply
+	// if we ever get big chunks.
 	let str = "";
 	let i = 0;
-	for (i=0; i<hex.length; i+=2)
-		str += '%' + hex.substr(i, 2);
-	return decodeURIComponent(str);
+	let len = ta.length;
+	for (i=0; i<len; i += 32768) {
+		str += String.fromCharCode.apply(null,
+			ta.slice(i, Math.min(i+32768, len)));
+	}
+
+	return str;
 }
 
 function hex2ta(hexx) {
@@ -47,12 +49,9 @@ function hex2ta(hexx) {
 		throw "illegal hex length "+hex.length+" received from onyx";
 		return null;
 	}
-	let ta = new Uint8Array((hex.length / 2));
-	let i = 0;
-	let j = 0;
-	for (i = 0; i<hex.length; i += 2) 
-		ta[j++] = parseInt(hex.substr(i, 2), 16);
-	return ta;
+	return new Uint8Array(hex.match(/[\dA-F]{2}/gi).map(function(s) {
+		return parseInt(s, 16);
+	}));
 }
 
 /*
